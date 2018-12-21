@@ -63,18 +63,27 @@ var fs = require('fs');
 
 function handler (request, response) {
 
-  if (endpoint === "/") {
-    response.writeHead(200, {"Content-Type": "text/html"});
+	var endpoint = request.url;
+	console.log(endpoint);
 
-    fs.readFile(__dirname + '/public/index.html', function(error, file) {
-      if (error) {
-        console.log(error);
-        return;
-      }
+	var method = request.method;
+	console.log(method);
 
-      response.end(file);
-    });
-  }
+	if (endpoint === "/") {
+
+		response.writeHead(200, {"Content-Type": "text/html"});
+
+		fs.readFile(__dirname + '/public/index.html', function(error, file) {
+			if (error) {
+				console.log(error);
+				return;
+			}
+
+			response.end(file);
+		});
+		
+	}
+
 }
 ```
 
